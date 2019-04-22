@@ -45,7 +45,15 @@ public class FreeDaysController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdFreeDay.getId())
                 .toUri();
 
-        return ResponseEntity.created(location).body(freeDay);
+        return ResponseEntity.created(location).body(createdFreeDay);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<Object> createFreeDays(@RequestBody List<FreeDay> freeDays) {
+        List<FreeDay> createdFreeDays = freeDayService.createFreeDays(freeDays);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+
+        return ResponseEntity.created(location).body(createdFreeDays);
     }
 
     @PutMapping("/{id}")

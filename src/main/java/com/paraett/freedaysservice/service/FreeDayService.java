@@ -58,4 +58,8 @@ public class FreeDayService {
             freeDayRepository.deleteAllByCompanyId(companyId);
         }
     }
+
+    public List<FreeDay> createFreeDays(List<FreeDay> freeDays) {
+        return freeDayRepository.saveAll(freeDays);
+    }
 }
