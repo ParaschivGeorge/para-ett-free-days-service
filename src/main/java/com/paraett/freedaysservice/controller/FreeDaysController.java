@@ -39,19 +39,20 @@ public class FreeDaysController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("")
-    public ResponseEntity<Object> createFreeDay(@RequestBody FreeDay freeDay) {
-        FreeDay createdFreeDay = freeDayService.createFreeDay(freeDay);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdFreeDay.getId())
-                .toUri();
-
-        return ResponseEntity.created(location).body(createdFreeDay);
-    }
+//    @PostMapping("")
+//    public ResponseEntity<Object> createFreeDay(@RequestBody FreeDay freeDay) {
+//        FreeDay createdFreeDay = freeDayService.createFreeDay(freeDay);
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdFreeDay.getId())
+//                .toUri();
+//
+//        return ResponseEntity.created(location).body(createdFreeDay);
+//    }
 
     @PostMapping("")
     public ResponseEntity<Object> createFreeDays(@RequestBody List<FreeDay> freeDays) {
         List<FreeDay> createdFreeDays = freeDayService.createFreeDays(freeDays);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().queryParam("companyId", freeDays.get(0).getCompanyId()).build()
+                .toUri();
 
         return ResponseEntity.created(location).body(createdFreeDays);
     }
