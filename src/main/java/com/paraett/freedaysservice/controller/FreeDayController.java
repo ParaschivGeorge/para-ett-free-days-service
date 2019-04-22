@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/free-days")
-public class FreeDaysController {
+public class FreeDayController {
     private FreeDayService freeDayService;
 
-    public FreeDaysController(FreeDayService freeDayService) {
+    public FreeDayController(FreeDayService freeDayService) {
         this.freeDayService = freeDayService;
     }
 
