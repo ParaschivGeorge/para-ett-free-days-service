@@ -3,10 +3,12 @@ package com.paraett.freedaysservice.repository;
 import com.paraett.freedaysservice.model.entities.FreeDay;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Repository
 public interface FreeDayRepository  extends JpaRepository<FreeDay, Long> {
     @Transactional
     @Modifying
