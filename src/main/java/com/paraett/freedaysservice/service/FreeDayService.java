@@ -28,16 +28,18 @@ public class FreeDayService {
         Optional<FreeDay> optionalFreeDay = freeDayRepository.findById(id);
         if (optionalFreeDay.isPresent()) {
             return optionalFreeDay.get();
+        } else {
+            throw new NotFoundException("id: " + id);
         }
-        throw new NotFoundException("id: " + id);
     }
 
     public void deleteFreeDay(Long id) {
         Optional<FreeDay> optionalFreeDay = freeDayRepository.findById(id);
         if (optionalFreeDay.isPresent()) {
             freeDayRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("id: " + id);
         }
-        throw new NotFoundException("id: " + id);
     }
 
     public FreeDay createFreeDay(FreeDay freeDay) {
@@ -48,9 +50,10 @@ public class FreeDayService {
         Optional<FreeDay> optionalFreeDay = freeDayRepository.findById(id);
         if (optionalFreeDay.isPresent()) {
             freeDay.setId(id);
-            freeDayRepository.save(freeDay);
+            return freeDayRepository.save(freeDay);
+        } else {
+            throw new NotFoundException("id: " + id);
         }
-        throw new NotFoundException("id: " + id);
     }
 
     public void deleteFreeDays(Long companyId) {
